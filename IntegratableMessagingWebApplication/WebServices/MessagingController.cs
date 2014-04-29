@@ -1,4 +1,5 @@
-﻿using SoftwarePeople.General.Data;
+﻿using Newtonsoft.Json;
+using SoftwarePeople.General.Data;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,9 +26,9 @@ namespace IntegratableMessagingWebApplication.WebServices
         }
 
         // POST api/<controller>
-        public void Post(MessagingModel message)
+        public void Post([FromBody]string value)
         {
-            new MessagingDataMapper().SaveData(message);
+            new MessagingDataMapper().SaveData(value);
         }
 
         // PUT api/<controller>/5
@@ -40,6 +41,7 @@ namespace IntegratableMessagingWebApplication.WebServices
         {
 
         }
+
     }
 
     public class MessagingModel
@@ -55,18 +57,7 @@ namespace IntegratableMessagingWebApplication.WebServices
         public MessagingDataMapper()
         {
             _DbHelper = new DatabaseHelper(ConfigurationManager.AppSettings["conn"]);
-        }
-        
-        public void SaveData(MessagingModel message)
-        {
-            DataParam[] dataParams = {
-                            new DataParam("@Id",message.Id),
-                            new DataParam("@Name", message.Name),
-                            new DataParam("@Message", message.Message)
-                    };
-
-            _DbHelper.ExecuteNonQuery("SaveData", dataParams);
-        }
+        }     
 
         public MessagingModel GetData()
         {
@@ -82,6 +73,19 @@ namespace IntegratableMessagingWebApplication.WebServices
                  model.Message = row["Message"].ToString();
              }
              return model;
+        }
+
+        internal void SaveData(string value)
+        {
+            Dictionary<string, string> values = JsonConvert.DeserializeObject<Dictionary<string, string>>(value);
+            MessagingModel message = new MessagingModel { Name = values["Name"].ToString(), Message = values["Message"].ToString() };
+
+            DataParam[] dataParams = {                            
+                            new DataParam("@Name", message.Name),
+                            new DataParam("@Message", message.Message)
+                    };
+
+            _DbHelper.ExecuteNonQuery("SaveData", dataParams);
         }
     }
 }

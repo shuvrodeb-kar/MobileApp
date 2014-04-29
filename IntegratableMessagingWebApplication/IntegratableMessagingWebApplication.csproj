@@ -76,6 +76,9 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="MessagingWebForm.aspx" />
+    <Content Include="scripts\AjaxUtility.js" />
+    <Content Include="scripts\jquery-1.11.0.js" />
+    <Content Include="scripts\json2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
