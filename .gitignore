@@ -1,0 +1,8 @@
+# git ignore file
+*.dll
+*.pdb
+*.user
+*.suo
+obj/
+bin/
+
