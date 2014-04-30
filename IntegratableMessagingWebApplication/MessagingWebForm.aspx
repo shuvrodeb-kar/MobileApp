@@ -21,7 +21,7 @@
         var successCallbackHandler = function (data) {
             if (data.Name != null) {
                 var notification = {
-                    "Message": data.Message,
+                    "Message": data.Name +' says ' +data.Message,
                     "Name": data.Name
                 };
 
