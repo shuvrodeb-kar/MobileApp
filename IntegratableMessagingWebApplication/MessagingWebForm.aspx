@@ -8,7 +8,7 @@
     <script src="scripts/jquery-1.11.0.js"></script>
     <script src="scripts/AjaxUtility.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function () {         
             setInterval(
                 function () {
                     checkMessage();
@@ -21,8 +21,18 @@
         var successCallbackHandler = function (data) {
             if (data.Name != null) {
                 var notification = {
-                    "Message": data.Name +' says ' +data.Message,
-                    "Name": data.Name
+                    "ExpirationDate": new Date(new Date().getTime() + 10 * 60000),
+                    "Message": data.Message,
+                    "delay_while_idle": true,
+                    "Android": {
+                        "data": {
+                            "id": "0",
+                            "title": data.Name,
+                            "message": data.Message,
+                            //"type": data.Type,                            
+                            "replyOptions": []
+                        }
+                    }
                 };
 
                 $.ajax({
