@@ -71,12 +71,12 @@ namespace IntegratableMessagingWebApplication.WebServices
 
             foreach (DataRow row in dataHelper.ReturnDataSet.Tables[0].Rows)
             {
-                model.Id = Convert.ToInt32(row["Id"]);
+                //model.Id = Convert.ToInt32(row["Id"]);
                 model.Name = row["Name"].ToString();
                 model.Message = row["Message"].ToString();
-                model.Type = row["Type"].ToString();
-                model.ReplyOptions = row["ReplyOptions"].ToString();
-                model.ReplyEndpoint = row["ReplyEndpoint"].ToString();
+                //model.Type = row["Type"].ToString();
+                //model.ReplyOptions = row["ReplyOptions"].ToString();
+                //model.ReplyEndpoint = row["ReplyEndpoint"].ToString();
             }
             return model;
         }
@@ -87,18 +87,19 @@ namespace IntegratableMessagingWebApplication.WebServices
             MessagingModel message = new MessagingModel
             {
                 Name = values["Name"].ToString(),
-                Message = values["Message"].ToString(),
-                Type = values["Type"].ToString(),
-                ReplyOptions = values["ReplyOptions"].ToString(),
-                ReplyEndpoint = values["ReplyEndpoint"].ToString()
+                Message = values["Message"].ToString()
+                //Type = values["Type"].ToString(),
+                //ReplyOptions = values["ReplyOptions"].ToString(),
+                //ReplyEndpoint = values["ReplyEndpoint"].ToString()
             };
 
             DataParam[] dataParams = {                            
                             new DataParam("@Name", message.Name),
-                            new DataParam("@Message", message.Message),
-                            new DataParam("@Type", message.Message),
-                            new DataParam("@ReplyOptions", message.Message),
-                            new DataParam("@ReplyEndpoint", message.Message)
+                            new DataParam("@Message", message.Message)
+                            //,
+                            //new DataParam("@Type", message.Message),
+                            //new DataParam("@ReplyOptions", message.Message),
+                            //new DataParam("@ReplyEndpoint", message.Message)
                     };
 
             _DbHelper.ExecuteNonQuery("SaveData", dataParams);
