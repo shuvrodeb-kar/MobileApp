@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegratableMessagingWebApplication", "IntegratableMessagingWebApplication\IntegratableMessagingWebApplication.csproj", "{A96BA7B3-A0E5-4A21-A3CC-B7E0B8A7C174}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostOffice", "IntegratableMessagingWebApplication\PostOffice.csproj", "{A96BA7B3-A0E5-4A21-A3CC-B7E0B8A7C174}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
